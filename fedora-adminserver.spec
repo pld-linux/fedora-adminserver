@@ -1,5 +1,4 @@
 Summary:	Fedora Admin Server
-Summary(pl):	-
 Name:		fedora-adminserver
 Version:	1.0.2
 Release:	0.1
@@ -9,23 +8,22 @@ Source0:	http://directory.fedora.redhat.com/sources/%{name}-%{version}.tar.gz
 # Source0-md5:	ab7b4809b135e28f114c8367264e9394
 URL:		http://directory.fedora.redhat.com/wiki/AdminServer
 #BuildRequires:	apr-devel
+BuildRequires:	cyrus-sasl-devel
 BuildRequires:	db-devel >= 4.0
+#BuildRequires:	fedora-adminutil
+#BuildRequires:	fedora-setuputil
+BuildRequires:	gdbm-devel >= 1.6
 BuildRequires:	libicu-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtermcap-devel
-BuildRequires:	nspr-devel >= 4.4.1
-BuildRequires:	rpmbuild(macros) >= 1.228
-#BuildRequires:	fedora-adminutil
-#BuildRequires:	fedora-setuputil
-BuildRequires:	cyrus-sasl-devel
-BuildRequires:	gdbm-devel >= 1.6
 BuildRequires:	mozldap-devel
 BuildRequires:	net-snmp-devel >= 5.2.1
+BuildRequires:	nspr-devel >= 4.4.1
 BuildRequires:	nss-devel
+BuildRequires:	rpmbuild(macros) >= 1.228
 #BuildRequires:	which
 #BuildRequires:	zip
 #Requires:	libicu >= 2.4
-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,9 +40,6 @@ the TLS/SSL functionality is provided by the Apache module mod_nss.
 Support for starting up servers on low port numbers is provided by
 mod_restartd
 
-%description -l pl
--
-
 %prep
 %setup -q
 
@@ -55,13 +50,10 @@ mod_restartd
 	MAKE=%{__make} \
 
 %install
-
 rm -rf $RPM_BUILD_ROOT
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-#%doc AUTHORS CREDITS ChangeLog NEWS README THANKS TODO
-#%{_datadir}/%{name}/fedora-base-%{version}.jar
-#%{_bindir}/startconsole
