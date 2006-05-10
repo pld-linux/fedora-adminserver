@@ -1,4 +1,5 @@
-Summary:	Fedora Admin Server
+Summary:	Fedora Admin Server - administration engine
+Summary(pl):	Fedora Admin Server - silnik administracyjny
 Name:		fedora-adminserver
 Version:	1.0.2
 Release:	0.1
@@ -27,7 +28,7 @@ BuildRequires:	rpmbuild(macros) >= 1.228
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Admin Server is the http based adminstration engine used by the
+Admin Server is the HTTP based adminstration engine used by the
 Directory Server to run the console and the web based applications
 such as Admin Express, DS Gateway, Org Chart, and others. It consists
 of a collection of CGI binary programs and scripts, HTML pages and
@@ -35,10 +36,24 @@ Javascript code, the adminserver console module, setuputil modules and
 programs, and config files. It was formerly based on the Netscape
 Enterprise Server but has been ported to use the Apache 2.x webserver
 using the Worker model (multi-threaded mode, not multi process). The
-main http functionality consists of the Apache module mod_admserv, and
+main HTTP functionality consists of the Apache module mod_admserv, and
 the TLS/SSL functionality is provided by the Apache module mod_nss.
 Support for starting up servers on low port numbers is provided by
-mod_restartd
+mod_restartd.
+
+%description -l pl
+Admin Server to oparty na HTTP silnik administracyjny u¿ywany przez
+Directory Server do uruchamiania konsoli i aplikacji WWW takich jak
+Admin Express, DS Gateway, Org Chart i innych. Sk³ada siê z zestawu
+programów binarnych i skryptów CGI, stron HTML i kodu w
+Javascripcie, modu³u konsoli adminservera, modu³ów i programów
+setuputil oraz plików konfiguracyjnych. Wcze¶niej by³ oparty na
+serwerze Netscape Enterprise ale zosta³ przeportowany do u¿ywania
+serwera WWW Apache 2.x w modelu Worker (wielow±tkowym, nie
+wieloprocesowym). G³ówna funkcjonalno¶æ HTTP sk³ada siê z modu³u
+Apache'a mod_admserv, a funkcjonalno¶æ TLS/SSL jest dostarczana przez
+modu³ Apache'a mod_nss. Obs³uga uruchamiania serwerów na niskich
+numerach portów jest dostarczana przez mod_restartd.
 
 %prep
 %setup -q
@@ -47,7 +62,7 @@ mod_restartd
 %{__make} \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
-	MAKE=%{__make} \
+	MAKE="%{__make}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
