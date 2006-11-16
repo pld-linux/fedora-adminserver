@@ -17,16 +17,17 @@ BuildRequires:	gdbm-devel >= 1.6
 BuildRequires:	libicu-devel >= 3.4
 BuildRequires:	libicu-devel < 3.5
 BuildRequires:	libstdc++-devel
-#BuildRequires:	libtermcap-devel
-BuildRequires:	mod_admserv >= 1.0
 BuildRequires:	mozldap-devel >= 6.0
+BuildRequires:	ncurses-devel
 BuildRequires:	net-snmp-devel >= 5.2.1
 BuildRequires:	nspr-devel >= 4.4.1
 BuildRequires:	nss-devel >= 3
 BuildRequires:	rpmbuild(macros) >= 1.228
+BuildRequires:	sed >= 4.0
 #BuildRequires:	which
 #BuildRequires:	zip
 #Requires:	libicu >= 2.4
+#Requires:	mod_admserv >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,14 +61,26 @@ numerach portów jest dostarczana przez mod_restartd.
 %prep
 %setup -q
 
+# don't BR ldapsdk
+sed -i -e 's/build: ldapjdk nmcjdk/build:/' admserv/console/Makefile
+
 %build
 %{__make} \
+	ARCH_DEBUG="%{rpmcflags}" \
+	ARCH_OPT="%{rpmcflags}" \
+	BUILD_DEBUG=%{?debug:full}%{!?debug:optimize} \
 	CC="%{__cc}" \
+	CCC="%{__cxx}" \
 	CXX="%{__cxx}" \
 	MAKE="%{__make}" \
+	CURSES="-lncurses" \
 	NSOS_TEST=PLD \
+	MOD_ADMSERV= \
+	MOD_NSS= \
+	MOD_RESTARTD= \
 	ADMINUTIL_INCLUDE=/usr/include/adminutil-1.0 \
 	ADMINUTIL_LIBPATH=%{_libdir} \
+	ICU_BINPATH=/usr/bin \
 	ICU_INCLUDE=/usr/include \
 	ICU_LIBPATH=%{_libdir} \
 	LDAPOBJNAME='libldap$(LDAP_LIB_VERSION)$(LDAP_DLL_PRESUF).$(LDAP_DLL_SUFFIX)' \
