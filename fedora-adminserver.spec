@@ -1,26 +1,28 @@
 Summary:	Fedora Admin Server - administration engine
 Summary(pl):	Fedora Admin Server - silnik administracyjny
 Name:		fedora-adminserver
-Version:	1.0.2
+Version:	1.0.3
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://directory.fedora.redhat.com/sources/%{name}-%{version}.tar.gz
-# Source0-md5:	ab7b4809b135e28f114c8367264e9394
+# Source0-md5:	c4c209e2c387a41d8519a52cbe9323a6
 URL:		http://directory.fedora.redhat.com/wiki/AdminServer
 #BuildRequires:	apr-devel
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	db-devel >= 4.0
-#BuildRequires:	fedora-adminutil
-#BuildRequires:	fedora-setuputil
+BuildRequires:	fedora-adminutil-devel >= 1.0
+BuildRequires:	fedora-setuputil >= 1.0
 BuildRequires:	gdbm-devel >= 1.6
-BuildRequires:	libicu-devel
+BuildRequires:	libicu-devel >= 3.4
+BuildRequires:	libicu-devel < 3.5
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtermcap-devel
-BuildRequires:	mozldap-devel
+#BuildRequires:	libtermcap-devel
+BuildRequires:	mod_admserv >= 1.0
+BuildRequires:	mozldap-devel >= 6.0
 BuildRequires:	net-snmp-devel >= 5.2.1
 BuildRequires:	nspr-devel >= 4.4.1
-BuildRequires:	nss-devel
+BuildRequires:	nss-devel >= 3
 BuildRequires:	rpmbuild(macros) >= 1.228
 #BuildRequires:	which
 #BuildRequires:	zip
@@ -62,7 +64,21 @@ numerach portów jest dostarczana przez mod_restartd.
 %{__make} \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
-	MAKE="%{__make}"
+	MAKE="%{__make}" \
+	NSOS_TEST=PLD \
+	ADMINUTIL_INCLUDE=/usr/include/adminutil-1.0 \
+	ADMINUTIL_LIBPATH=%{_libdir} \
+	ICU_INCLUDE=/usr/include \
+	ICU_LIBPATH=%{_libdir} \
+	LDAPOBJNAME='libldap$(LDAP_LIB_VERSION)$(LDAP_DLL_PRESUF).$(LDAP_DLL_SUFFIX)' \
+	LDAPSDK_INCLUDE=/usr/include/mozldap \
+	LDAPSDK_LIBPATH=%{_libdir} \
+	NSPR_INCLUDE=/usr/include/nspr \
+	NSPR_LIBPATH=%{_libdir} \
+	SECURITY_INCLUDE=/usr/include/nss \
+	SECURITY_LIBPATH=%{_libdir} \
+	SETUPUTIL_INCLUDE=/usr/include/fedora-setuputil \
+	SETUPUTIL_LIBPATH=%{_libdir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
