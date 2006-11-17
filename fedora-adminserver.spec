@@ -8,7 +8,6 @@ Group:		Applications
 Source0:	http://directory.fedora.redhat.com/sources/%{name}-%{version}.tar.gz
 # Source0-md5:	c4c209e2c387a41d8519a52cbe9323a6
 URL:		http://directory.fedora.redhat.com/wiki/AdminServer
-#BuildRequires:	apr-devel
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	db-devel >= 4.0
 BuildRequires:	fedora-adminutil-devel >= 1.0
@@ -20,14 +19,15 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	mozldap-devel >= 6.0
 BuildRequires:	ncurses-devel
 BuildRequires:	net-snmp-devel >= 5.2.1
-BuildRequires:	nspr-devel >= 4.4.1
+BuildRequires:	nspr-devel >= 1:4.4.1
 BuildRequires:	nss-devel >= 3
 BuildRequires:	rpmbuild(macros) >= 1.228
 BuildRequires:	sed >= 4.0
 #BuildRequires:	which
 #BuildRequires:	zip
-#Requires:	libicu >= 2.4
-#Requires:	mod_admserv >= 1.0
+Requires:	apache-mod_admserv >= 1.0
+Requires:	apache-mod_nss >= 1.0
+Requires:	apache-mod_restartd >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -65,7 +65,7 @@ numerach portów jest dostarczana przez mod_restartd.
 sed -i -e 's/build: ldapjdk nmcjdk/build:/' admserv/console/Makefile
 
 %build
-%{__make} \
+%{__make} buildOxygen \
 	ARCH_DEBUG="%{rpmcflags}" \
 	ARCH_OPT="%{rpmcflags}" \
 	BUILD_DEBUG=%{?debug:full}%{!?debug:optimize} \
@@ -99,5 +99,5 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
-%defattr(644,root,root,755)
+#%files
+#%defattr(644,root,root,755)
