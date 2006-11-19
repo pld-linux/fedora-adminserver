@@ -1,6 +1,7 @@
 Summary:	Fedora Admin Server - administration engine
 Summary(pl):	Fedora Admin Server - silnik administracyjny
 Name:		fedora-adminserver
+# note: don't try to "update" to 7.1 dated 20051007, it's older than 1.0
 Version:	1.0.3
 Release:	0.1
 License:	GPL
