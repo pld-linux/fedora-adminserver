@@ -1,5 +1,5 @@
 Summary:	Fedora Admin Server - administration engine
-Summary(pl):	Fedora Admin Server - silnik administracyjny
+Summary(pl.UTF-8):   Fedora Admin Server - silnik administracyjny
 Name:		fedora-adminserver
 # note: don't try to "update" to 7.1 dated 20051007, it's older than 1.0
 Version:	1.0.3
@@ -45,19 +45,19 @@ the TLS/SSL functionality is provided by the Apache module mod_nss.
 Support for starting up servers on low port numbers is provided by
 mod_restartd.
 
-%description -l pl
-Admin Server to oparty na HTTP silnik administracyjny uøywany przez
+%description -l pl.UTF-8
+Admin Server to oparty na HTTP silnik administracyjny u≈ºywany przez
 Directory Server do uruchamiania konsoli i aplikacji WWW takich jak
-Admin Express, DS Gateway, Org Chart i innych. Sk≥ada siÍ z zestawu
-programÛw binarnych i skryptÛw CGI, stron HTML i kodu w
-Javascripcie, modu≥u konsoli adminservera, modu≥Ûw i programÛw
-setuputil oraz plikÛw konfiguracyjnych. Wcze∂niej by≥ oparty na
-serwerze Netscape Enterprise ale zosta≥ przeportowany do uøywania
-serwera WWW Apache 2.x w modelu Worker (wielow±tkowym, nie
-wieloprocesowym). G≥Ûwna funkcjonalno∂Ê HTTP sk≥ada siÍ z modu≥u
-Apache'a mod_admserv, a funkcjonalno∂Ê TLS/SSL jest dostarczana przez
-modu≥ Apache'a mod_nss. Obs≥uga uruchamiania serwerÛw na niskich
-numerach portÛw jest dostarczana przez mod_restartd.
+Admin Express, DS Gateway, Org Chart i innych. Sk≈Çada siƒô z zestawu
+program√≥w binarnych i skrypt√≥w CGI, stron HTML i kodu w
+Javascripcie, modu≈Çu konsoli adminservera, modu≈Ç√≥w i program√≥w
+setuputil oraz plik√≥w konfiguracyjnych. Wcze≈õniej by≈Ç oparty na
+serwerze Netscape Enterprise ale zosta≈Ç przeportowany do u≈ºywania
+serwera WWW Apache 2.x w modelu Worker (wielowƒÖtkowym, nie
+wieloprocesowym). G≈Ç√≥wna funkcjonalno≈õƒá HTTP sk≈Çada siƒô z modu≈Çu
+Apache'a mod_admserv, a funkcjonalno≈õƒá TLS/SSL jest dostarczana przez
+modu≈Ç Apache'a mod_nss. Obs≈Çuga uruchamiania serwer√≥w na niskich
+numerach port√≥w jest dostarczana przez mod_restartd.
 
 %prep
 %setup -q
